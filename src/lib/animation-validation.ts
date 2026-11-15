@@ -2,7 +2,7 @@ import { parse } from 'acorn';
 // AST validation is defense in depth, NOT an execution sandbox.
 const bannedNames = new Set(['window', 'document', 'globalThis', 'self', 'parent', 'top', 'fetch', 'XMLHttpRequest', 'WebSocket', 'Worker', 'importScripts', 'eval', 'Function', 'setTimeout', 'setInterval', 'requestAnimationFrame', 'navigator', 'location', 'localStorage', 'sessionStorage', 'process', 'require', 'crypto', 'Atomics', 'SharedArrayBuffer', 'performance', 'Date', 'Proxy', 'Reflect']);
 const bannedMembers = new Set(['constructor', '__proto__', 'prototype', 'random']);
-type Node = { type: string; [key: string]: unknown };
+type Node = { type: string; name?: string; value?: unknown; async?: boolean; generator?: boolean; property?: Node; computed?: boolean; id?: Node; params?: Node[]; [key: string]: unknown };
 export function validateAnimation(source: string) {
   if (source.length > 80000) throw new Error('Animation exceeds code limit');
   const ast = parse(source, { ecmaVersion: 2022, sourceType: 'script' }) as unknown as Node;
