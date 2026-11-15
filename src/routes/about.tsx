@@ -1,0 +1,9 @@
+import { Link, createFileRoute } from '@tanstack/react-router';
+import { ArrowRight, Feather } from 'lucide-react';
+import { AppShell } from '@/components/app-shell';
+import { StoryCanvas } from '@/components/story-canvas';
+import { ExampleGallery } from '@/components/example-gallery';
+import { Button } from '@/components/ui/button';
+import { pageHead } from '@/lib/metadata';
+export const Route = createFileRoute('/about')({ head: () => pageHead('Little stories, big imagination', 'Fableframe brings picture-book imagination to animated short stories with expressive characters and real procedural illustrations.'), component: About });
+function About() { return <AppShell><section className="about-cover"><StoryCanvas story="moon" playing time={2} /><div className="about-text"><div className="eyebrow text-primary-foreground"><Feather />LITTLE STORIES, BIG IMAGINATION</div><h1>Fableframe</h1><p>A little rabbit. A stolen moon.<br />A world waiting to be imagined.</p><Button asChild size="lg"><Link to="/">Make a little story<ArrowRight /></Link></Button></div></section><div className="workspace"><h2 className="display text-3xl">From a little idea to a little wonder.</h2><div className="how-grid"><article><span className="step-number">1</span><h3>A spark of imagination</h3><p>Start with a character, a wish, or a wonderfully unexpected adventure.</p></article><article><span className="step-number">2</span><h3>A world comes to life</h3><p>Picture-book textures, expressive faces, and playful movement bring every scene together.</p></article><article><span className="step-number">3</span><h3>A story worth sharing</h3><p>A tiny vertical film, ready for a much bigger world.</p></article></div><ExampleGallery /></div></AppShell>; }

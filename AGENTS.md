@@ -28,3 +28,11 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+## Application architecture
+
+- Keep TanStack Start file routing and the existing edge runtime; the requested alternative framework is incompatible with hosted previews.
+- The studio runs only trusted, version-controlled Canvas examples; generated JavaScript must never execute in the browser or trusted web server.
+- Keep native Chromium/FFmpeg sample rendering in `workers/render`, outside the edge application dependency graph, because the hosted runtime cannot spawn native processes.
+- Live generation must stay explicitly unavailable until authentication, atomic persistent credits, moderation, and a secret-free network-isolated rendering sandbox are deployed; never simulate progress, accounts, balances, or paid delivery.
+- Define all UI colors, typography, and shadows in the global design system; procedural art pigments belong only in the trusted illustration toolkit.

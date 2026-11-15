@@ -10,33 +10,150 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as AccountRouteImport } from './routes/account'
+import { Route as ContentPolicyRouteImport } from './routes/content-policy'
+import { Route as CreationsRouteImport } from './routes/creations'
+import { Route as ExamplesRouteImport } from './routes/examples'
+import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as TermsRouteImport } from './routes/terms'
+import { Route as ExamplesIndexRouteImport } from './routes/examples.index'
+import { Route as ExamplesStoryIdRouteImport } from './routes/examples.$storyId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AccountRoute = AccountRouteImport.update({
+  id: '/account',
+  path: '/account',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContentPolicyRoute = ContentPolicyRouteImport.update({
+  id: '/content-policy',
+  path: '/content-policy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CreationsRoute = CreationsRouteImport.update({
+  id: '/creations',
+  path: '/creations',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ExamplesRoute = ExamplesRouteImport.update({
+  id: '/examples',
+  path: '/examples',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TermsRoute = TermsRouteImport.update({
+  id: '/terms',
+  path: '/terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ExamplesIndexRoute = ExamplesIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => ExamplesRoute,
+} as any)
+const ExamplesStoryIdRoute = ExamplesStoryIdRouteImport.update({
+  id: '/$storyId',
+  path: '/$storyId',
+  getParentRoute: () => ExamplesRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/account': typeof AccountRoute
+  '/content-policy': typeof ContentPolicyRoute
+  '/creations': typeof CreationsRoute
+  '/examples': typeof ExamplesRouteWithChildren
+  '/privacy': typeof PrivacyRoute
+  '/terms': typeof TermsRoute
+  '/examples/$storyId': typeof ExamplesStoryIdRoute
+  '/examples/': typeof ExamplesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/account': typeof AccountRoute
+  '/content-policy': typeof ContentPolicyRoute
+  '/creations': typeof CreationsRoute
+  '/privacy': typeof PrivacyRoute
+  '/terms': typeof TermsRoute
+  '/examples/$storyId': typeof ExamplesStoryIdRoute
+  '/examples': typeof ExamplesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/account': typeof AccountRoute
+  '/content-policy': typeof ContentPolicyRoute
+  '/creations': typeof CreationsRoute
+  '/examples': typeof ExamplesRouteWithChildren
+  '/privacy': typeof PrivacyRoute
+  '/terms': typeof TermsRoute
+  '/examples/$storyId': typeof ExamplesStoryIdRoute
+  '/examples/': typeof ExamplesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/account'
+    | '/content-policy'
+    | '/creations'
+    | '/examples'
+    | '/privacy'
+    | '/terms'
+    | '/examples/$storyId'
+    | '/examples/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/about'
+    | '/account'
+    | '/content-policy'
+    | '/creations'
+    | '/privacy'
+    | '/terms'
+    | '/examples/$storyId'
+    | '/examples'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/account'
+    | '/content-policy'
+    | '/creations'
+    | '/examples'
+    | '/privacy'
+    | '/terms'
+    | '/examples/$storyId'
+    | '/examples/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
+  AccountRoute: typeof AccountRoute
+  ContentPolicyRoute: typeof ContentPolicyRoute
+  CreationsRoute: typeof CreationsRoute
+  ExamplesRoute: typeof ExamplesRouteWithChildren
+  PrivacyRoute: typeof PrivacyRoute
+  TermsRoute: typeof TermsRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +165,95 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/account': {
+      id: '/account'
+      path: '/account'
+      fullPath: '/account'
+      preLoaderRoute: typeof AccountRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/content-policy': {
+      id: '/content-policy'
+      path: '/content-policy'
+      fullPath: '/content-policy'
+      preLoaderRoute: typeof ContentPolicyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/creations': {
+      id: '/creations'
+      path: '/creations'
+      fullPath: '/creations'
+      preLoaderRoute: typeof CreationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/examples': {
+      id: '/examples'
+      path: '/examples'
+      fullPath: '/examples'
+      preLoaderRoute: typeof ExamplesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/terms': {
+      id: '/terms'
+      path: '/terms'
+      fullPath: '/terms'
+      preLoaderRoute: typeof TermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/examples/': {
+      id: '/examples/'
+      path: '/'
+      fullPath: '/examples/'
+      preLoaderRoute: typeof ExamplesIndexRouteImport
+      parentRoute: typeof ExamplesRoute
+    }
+    '/examples/$storyId': {
+      id: '/examples/$storyId'
+      path: '/$storyId'
+      fullPath: '/examples/$storyId'
+      preLoaderRoute: typeof ExamplesStoryIdRouteImport
+      parentRoute: typeof ExamplesRoute
+    }
   }
 }
 
+interface ExamplesRouteChildren {
+  ExamplesStoryIdRoute: typeof ExamplesStoryIdRoute
+  ExamplesIndexRoute: typeof ExamplesIndexRoute
+}
+
+const ExamplesRouteChildren: ExamplesRouteChildren = {
+  ExamplesStoryIdRoute: ExamplesStoryIdRoute,
+  ExamplesIndexRoute: ExamplesIndexRoute,
+}
+
+const ExamplesRouteWithChildren = ExamplesRoute._addFileChildren(
+  ExamplesRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
+  AccountRoute: AccountRoute,
+  ContentPolicyRoute: ContentPolicyRoute,
+  CreationsRoute: CreationsRoute,
+  ExamplesRoute: ExamplesRouteWithChildren,
+  PrivacyRoute: PrivacyRoute,
+  TermsRoute: TermsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
