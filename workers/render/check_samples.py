@@ -43,7 +43,7 @@ async def main():
             await page.wait_for_function("document.querySelector('video').currentTime>0.2")
             await page.locator('video').evaluate('(v)=>v.pause()')
             async with page.expect_download(timeout=30000) as download_event:
-                await page.get_by_role('button',name='Download sample MP4').click()
+                await page.get_by_role('link',name='Download sample MP4').click()
             download=await download_event.value
             target=output/f'download-{story}.mp4'
             await download.save_as(target)
