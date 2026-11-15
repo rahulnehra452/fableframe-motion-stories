@@ -64,7 +64,7 @@ async def render(args):
             path = args.output / f'{story}.mp4'
             audio = args.output / f'{story}-ambient.wav'
             soundtrack(audio, args.duration)
-            command = ['ffmpeg', '-hide_banner', '-loglevel', 'error', '-y', '-f', 'image2pipe', '-framerate', '30', '-vcodec', 'mjpeg', '-i', 'pipe:0', '-i', str(audio), '-map', '0:v:0', '-map', '1:a:0', '-c:v', 'libx264', '-preset', 'fast', '-crf', '20', '-pix_fmt', 'yuv420p', '-c:a', 'aac', '-b:a', '128k', '-t', str(args.duration), '-movflags', '+faststart', str(path)]
+            command = ['ffmpeg', '-hide_banner', '-loglevel', 'error', '-y', '-f', 'image2pipe', '-framerate', '30', '-vcodec', 'mjpeg', '-i', 'pipe:0', '-i', str(audio), '-map', '0:v:0', '-map', '1:a:0', '-vf', 'scale=in_range=pc:out_range=tv,format=yuv420p', '-color_range', 'tv', '-c:v', 'libx264', '-preset', 'fast', '-crf', '20', '-pix_fmt', 'yuv420p', '-c:a', 'aac', '-b:a', '128k', '-t', str(args.duration), '-movflags', '+faststart', str(path)]
             encoder = subprocess.Popen(command, stdin=subprocess.PIPE)
             try:
                 for frame in range(args.duration * 30):
